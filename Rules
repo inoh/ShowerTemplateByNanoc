@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
+require 'fileutils'
 
 compile '/css/*' do
   filter :sass, :syntax => :scss
@@ -37,7 +38,9 @@ end
 
 layout '*', :erb
 
+unless Dir.exist?('output')
+  Dir.mkdir('output')
+end
 unless Dir.exist?('output/shower')
-  require 'fileutils'
   FileUtils.cp_r('shower', 'output/shower')
 end
