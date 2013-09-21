@@ -12,6 +12,9 @@ end
 compile '*' do
   if item.binary?
     # don’t filter binary items
+  elsif item[:extension] == 'haml'
+    filter :haml
+    layout 'default'
   else
     filter :erb
     layout 'default'
